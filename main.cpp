@@ -27,7 +27,7 @@ int main()
         cout << "stack.size() = " << stack.Size() << endl;
         cout << stack.Pop() << endl;
         cout << "stack.size() = " << stack.Size() << endl;
-    } catch (int exception) {
+    } catch (ExceptionStack exception) {
         if (exception == ExceptionStack::EmptyStack) {
             cout << "Вы достигли дна" << endl;
         }

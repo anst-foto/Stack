@@ -1,7 +1,7 @@
 #ifndef STACK_STACK_H
 #define STACK_STACK_H
 
-#include <vector>
+#include "Container.h"
 
 using namespace std;
 
@@ -9,17 +9,10 @@ enum ExceptionStack {
     EmptyStack
 };
 
-template<class T>
-class Stack {
-private:
-    vector<T> container;
+template<class Type>
+class Stack : public Container<Type> {
 public:
-    void Push(T value)
-    {
-        container.push_back(value);
-    }
-
-    T Pop()
+    Type Pop() override
     {
         if (isEmpty()) {
             throw ExceptionStack::EmptyStack;
@@ -31,22 +24,15 @@ public:
         }
     }
 
-    T Fetch()
+    Type Fetch() override
     {
-        auto end = container.end() - 1;
-        return *end;
-    }
-
-    bool isEmpty()
-    {
-        return container.empty();
-    }
-
-    int Size()
-    {
-        return container.size();
+        if (isEmpty()) {
+            throw ExceptionStack::EmptyStack;
+        } else {
+            auto end = container.end() - 1;
+            return *end;
+        }
     }
 };
-
 
 #endif //STACK_STACK_H
