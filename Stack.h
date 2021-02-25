@@ -33,6 +33,24 @@ public:
             return *end;
         }
     }
+
+    void ForEach(void(*Func)(Type))
+    {
+        /*
+        for (auto i = container.rbegin; i != container.rend; ++i) {
+            Func(*i);
+        }
+        */
+        for (auto element : container) {
+            Func(element);
+        }
+    }
+    void ForEach(Type(*Func)(Type))
+    {
+        for (auto i = container.begin(); i < container.end(); ++i) {
+            *i = Func(*i);
+        }
+    }
 };
 
 #endif //STACK_STACK_H
