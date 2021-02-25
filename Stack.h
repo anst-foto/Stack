@@ -5,6 +5,10 @@
 
 using namespace std;
 
+enum ExceptionStack {
+    EmptyStack
+};
+
 template<class T>
 class Stack {
 private:
@@ -17,14 +21,31 @@ public:
 
     T Pop()
     {
-        return container.back();
+        if (isEmpty()) {
+            throw ExceptionStack::EmptyStack;
+        } else {
+            auto end = container.end() - 1;
+            auto temp = *end;
+            container.pop_back();
+            return temp;
+        }
     }
 
     T Fetch()
     {
-        return container.at(container.back());
+        auto end = container.end() - 1;
+        return *end;
     }
 
+    bool isEmpty()
+    {
+        return container.empty();
+    }
+
+    int Size()
+    {
+        return container.size();
+    }
 };
 
 
